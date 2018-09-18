@@ -14,7 +14,6 @@ export const todoReducer = (state = [], action) => {
       action.payload.completed = false;
       return [...state, {...action.payload}];
     case UPDATE_TODO:
-      console.log(action.payload);
       return [...state].map(todo => {
         if(todo.id === action.payload.id) {
           todo.completed = !todo.completed;
