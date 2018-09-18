@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createTodo, updateTodo } from './actions';
+import { createTodo, updateTodo, deleteTodo } from './actions';
 import Todo from './Todo';
 import CreateTodoForm from './CreateTodoForm';
 
@@ -14,6 +14,10 @@ class TodoList extends React.Component {
     this.props.updateTodo(todo);
   }
 
+  handleDeleteTodo = (todo) => {
+    this.props.deleteTodo(todo);
+  }
+
   render() {
     return (
       <div>
@@ -21,7 +25,7 @@ class TodoList extends React.Component {
       {
         this.props.todos.map((todo) => {
           return (
-            <Todo key={todo.id} todo={todo} handleUpdateTodo={this.handleUpdateTodo} />
+            <Todo key={todo.id} todo={todo} handleUpdateTodo={this.handleUpdateTodo} handleDeleteTodo={this.handleDeleteTodo} />
           )
         })
       }
@@ -36,4 +40,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {createTodo, updateTodo})(TodoList);
+export default connect(mapStateToProps, { createTodo, updateTodo, deleteTodo })(TodoList);

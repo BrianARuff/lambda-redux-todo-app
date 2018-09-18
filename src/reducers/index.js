@@ -1,4 +1,4 @@
-import {CREATE_TODO, UPDATE_TODO} from '../actions';
+import {CREATE_TODO, UPDATE_TODO, DELETE_TODO} from '../actions';
 
 let id = 0;
 
@@ -22,6 +22,9 @@ export const todoReducer = (state = [], action) => {
           return todo;
         }
       });
+    case DELETE_TODO:
+      console.log(action.payload.id);
+      return [...state].filter(todo => todo.id !== action.payload.id);
     default: 
       return [...state];
   }
